@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Tasks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <div class="text-center mt-[150px] border-2 w-[700px] mx-auto bg-green-400">
+        <div class="w-[300px] mx-auto mt-[10px] ">
+            <h1 class="text-3xl font-bold border-b-2">EMPLOYEE LIST</h1>
+        </div>
+        <h3 class="text-2xl font-medium mt-4">Employee ID</h3>
+        <span id="empID" class="font-xl"></span>
+        <h2  class="text-2xl font-medium mt-4">Employee Name</h2>
+        <span id="empName" class="font-xl mb-4"></span>
+    </div>
+    <div class="mt-4 text-center">
+        <a href="/" class="bg-green-200 hover:bg-green-500 p-2 border-2 text-2xl rounded-full">Home</a>
+        <a href="/add" class="bg-green-200 hover:bg-green-500 p-2 border-2 text-2xl rounded-full">Add New Employee</a>
+    </div>
+
+    <div class="text-center mt-[150px] border-2 w-[700px] mx-auto bg-green-400">
+        <h1 class="text-3xl mt-[10px]">Update Employee Details</h1>
+        <form action="/update" id="updateEmp" method="PUT">
+            <div class="mt-6 border-t-2 text-center">
+                <label for="empID">Task ID</label>
+                <input type="text" id="empID" name="empID" required class="mt-4">
+            </div>
+            <div class="text-center">
+                <label for="empName">Task Name</label>
+                <input type="text" id="empName" name="empName" required class="mt-4">
+            </div>
+            <button type="submit" class="w-[200px] bg-blue-200 hover:bg-blue-500 border-2 text-2xl rounded-full my-6">Submit</button>
+        </form>
+    </div>
+
+    <div class="text-center mt-[150px] border-2 w-[700px] mx-auto bg-green-400 mb-[30px]">
+        <h1 class="text-3xl mt-[10px]">Delete An Employee</h1>
+        <form action="/delete" id="deleteEmp" method="DELETE">
+            <div class="mt-6 border-t-2 text-center">
+                <label for="empID">Task ID</label>
+                <input type="text" id="empID" name="empID" required class="mt-4">
+            </div>
+            <button type="submit" class="w-[200px] bg-blue-200 hover:bg-blue-500 border-2 text-2xl rounded-full my-6">Delete</button>
+        </form>
+    </div>
+
+    <script>
+        async function fetchEmpDetails() {
+            const url = window.location.href;
+            console.log(url)
+            const id = window.location.pathname.split('/').pop()
+            try {
+                const response = await fetch(`/api/add/${id}`);
+                console.log(response)
+                if (!response.ok) {
+                    throw new Error('Failed to fetch Employee details');
+                }
+                const data = await response.json();
+                console.log(data)
+                document.getElementById('empID').textContent= data.empID;
+                document.getElementById('empName').textContent = data.empName;
+            } catch (error) {
+                console.error('Error fetching Employee details:', error);
+                document.body.innerHTML = '<p>Failed to load Employee details.</p>';
+            }
+    }
+        document.addEventListener('DOMContentLoaded', fetchEmpDetails);
+    </script>
+</body>
+</html>

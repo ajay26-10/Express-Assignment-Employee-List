@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="text-center mt-[150px] border-2 w-[500px] mx-auto bg-green-400">
+        <h1 class="text-4xl border-b-2 bg-blue-100 p-2">Employee List</h1>
+        <div class="mt-6">
+            <a href="/add" class="border gap-2 p-2 bg-blue-200 hover:bg-blue-500 rounded-lg">Add an Employee</a>
+        </div>
+        <div class="my-6">
+            <input type="text" id="empID" name="empID" placeholder="Enter Employee ID" class="border-2 rounded-full pl-2 h-[40px]">
+            <button class="border-2 rounded-lg p-2 bg-slate-200 hover:bg-slate-400" onclick="redirectToTask()">View Employee Details</button>
+        </div>
+    </div>
+
+    <script>
+        function redirectToTask() {
+            const empID = document.getElementById("empID").value;
+            const url = `/view/${empID}`;
+            console.log(empID);
+            console.log(url);
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>
+</body>
+</html>
