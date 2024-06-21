@@ -67,14 +67,27 @@ app.put('api/update/:id',(req,res)=>{
 
 });
 
+// app.delete('api/delete/:id', (req,res)=>{
+//     const id = req.params.id;
+//     const{empID, empName} = req.body;
+//     const emp2 = empList.find(emp2 => emp2.empID == id);
+//     if(!emp2){
+//         return res.status(404).send("Employee Not Found!")
+//     }
+//     const delEmp = empList.splice(empID,1);
+//     res.json(delEmp);
+// })
+
 app.delete('api/delete/:id', (req,res)=>{
     const id = req.params.id;
     const{empID, empName} = req.body;
     const emp2 = empList.find(emp2 => emp2.empID == id);
+    console.log(emp2)
     if(!emp2){
         return res.status(404).send("Employee Not Found!")
     }
-    const delEmp = empList.splice(empID,1);
+    const index=empList.indexOf(emp2);
+    const delEmp = empList.splice(index,1);
     res.json(delEmp);
 })
 
