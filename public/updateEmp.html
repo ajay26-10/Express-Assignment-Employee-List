@@ -42,6 +42,7 @@
                 }
                 const data = await response.json();
                 console.log(data);
+                res.send("alert('Updated Successfully'); window.location.href = '/update'; ");
             } catch (error) {
                 console.error('Error updading Employee details:', error);
                 document.body.innerHTML = '<p>Failed to update Employee details.</p>';

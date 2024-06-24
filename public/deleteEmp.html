@@ -39,6 +39,7 @@
                 }
                 const data = await response.json();
                 console.log(data);
+                res.send("alert('Deleted Successfully'); window.location.href = '/delete'; ");
             } catch (error) {
                 console.error('Error fetching Employee details:', error);
                 document.body.innerHTML = '<p>Failed to load Employee details.</p>';
